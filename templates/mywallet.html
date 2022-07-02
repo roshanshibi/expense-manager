@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+       Wallets
+        <div class="card-body">
+        <div class="table-responsive">
+            <table style="background-color:honeydew" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+                    <tr>
+                        <th>Wallet</th>
+                        <th>Total amount</th>
+                        <th>Budget</th>
+                        <th>Budget left</th>
+                        
+                    </tr>
+        </thead>
+        <tbody>
+     {% for wallet in mywallet1  %}
+                    <tr>
+                        <td>{{wallet.wallet_name}}</td>
+                        <td>{{wallet.wallet_amount}}</td>
+                        <td>{{wallet.budget}}</td>
+                        <td>{{wallet.amount_left}}</td>
+                        <td><a href="{% url 'deletewallet' wallet.id %}" class = " btn btn-danger ">Delete</a></td>
+                    </tr>
+         
+            {% endfor %}
+   
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

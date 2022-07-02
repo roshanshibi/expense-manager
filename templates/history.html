@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+       History of Transaction
+        <div class="card-body">
+        <div class="table-responsive">
+           
+                   <br>
+                   <br>
+            <table style="background-color:honeydew" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+                    <tr>
+                        <th>Wallet</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        
+                    </tr>
+        </thead>
+        <tbody>
+     {% for hist in history  %}
+                    <tr>
+                        <td>{{hist.wallet.wallet_name}}</td>
+                        <td>{{hist.add_money}}</td>
+                        <td>{{hist.category}}</td>
+                        <td>{{hist.amount}}</td>
+                        <td>{{hist.Date}}</td>
+                        <td>{{hist.description}}</td>
+                        <td><a href="{% url 'expense_edit' hist.id %}" class = " btn btn-success ">Edit</a></td>
+                        <td><a href="{% url 'deletetransaction' hist.id %}" class = " btn btn-danger ">Delete</a></td>
+                    </tr>
+         
+            {% endfor %}
+   
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

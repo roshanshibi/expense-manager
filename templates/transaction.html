@@ -1,0 +1,71 @@
+{% extends 'base.html' %} 
+{% block content %}
+<br>
+<div class="container" >
+  {% for message1 in messages %}
+      <h4 style="color: darkred;"><script>alert("{{message1}}")</script></h4>
+      {% endfor %}
+  
+</div>
+
+
+<form method="POST" action="/transaction_submit/">
+{% csrf_token %}
+<h1 style="color: steelblue;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Add your Transaction</h1>
+<br>
+
+<label for="wallet_name">Wallet</label>
+
+<select name="wallet_name" id="wallet_name">
+  {% for wallet in wallet1 %}
+  <option name="wallet_name" value="{{wallet.wallet_name}}"> {{wallet.wallet_name}}</option>
+  {% endfor %}
+</select>
+<br>
+<br>
+
+    <p>Please select your preferred transaction method:</p>
+    <div>
+      <input type="radio" id="contactChoice1"
+       name="add_money" value="Expense">
+      <label for="contactChoice1" >Expense</label>
+  
+      <input type="radio" id="contactChoice2"
+       name="add_money" value="Income">
+      <label for="contactChoice2">Income</label>
+  
+   
+    </div>
+  <br>
+
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="inputEmail4">Amount</label>
+        <input type="number" class="form-control" id="inputEmail4" name="amount" placeholder="Amount">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputPassword4">Category</label>
+        <input type="text" class="form-control" id="inputPassword4" name="category" placeholder="eg. Travel, Shopping">
+      </div>
+    </div>
+   <div class="form-row">
+    <div class="form-group col-md-2">
+        <label for="inputEmail4">Date</label>
+        <input type="date" class="form-control" name="Date" id="inputEmail4">
+    </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="4"></textarea>
+      </div>
+      
+     
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- <a href="{% url 'transaction_submit' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a> -->
+    <!-- <button>Submit</button> -->
+  </form>
+{% endblock %}
+

@@ -1,0 +1,72 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+<br>
+<div class="container" >
+  {% for message1 in messages %}
+      <h4 style="color: darkred;"><script>alert("{{message1}}")</script></h4>
+      {% endfor %}
+  
+</div>
+
+
+<form method="POST" action="{% url 'addmoney_update' addmoney_info.id %}">
+{% csrf_token %}
+
+<h1 style="color: steelblue;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Edit your Transaction</h1>
+<br>
+
+<label for="wallet_name">Wallet</label>
+
+<select name="wallet_name" id="wallet_name">
+
+  <option name="wallet_name" value="{{addmoney_info.wallet}}"> {{addmoney_info.wallet}}</option>
+  
+</select>
+<br>
+<br>
+
+    <p>Please select your preferred transaction method:</p>
+    <div>
+      <input type="radio" id="contactChoice1"
+       name="add_money" value="Expense">
+      <label for="contactChoice1" >Expense</label>
+  
+      <input type="radio" id="contactChoice2"
+       name="add_money" value="Income">
+      <label for="contactChoice2">Income</label>
+  
+   
+    </div>
+  <br>
+
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="inputEmail4">Amount</label>
+        <input type="number" class="form-control" id="inputEmail4" name="amount" value="{{addmoney_info.amount}}" placeholder="Amount">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputPassword4">Category</label>
+        <input type="text" class="form-control" id="inputPassword4" name="category" value="{{addmoney_info.category}}" placeholder="eg. Travel, Shopping">
+      </div>
+    </div>
+   <div class="form-row">
+    <div class="form-group col-md-2">
+        <label for="inputEmail4">Date</label>
+        <input type="date" class="form-control" value="{{addmoney_info.Date}}" name="Date" id="inputEmail4">
+    </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" value="{{addmoney_info.description}}" name="description" rows="4">{{addmoney_info.description}}</textarea>
+      </div>
+      
+     
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+ 
+  </form>
+{% endblock %}
